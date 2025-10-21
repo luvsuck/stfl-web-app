@@ -1,0 +1,3 @@
+/* src/styles/global.css */
+* { box-sizing: border-box; }
+body, html, #app { height: 100%; margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; background: #071431; color: #eaf3ff; }

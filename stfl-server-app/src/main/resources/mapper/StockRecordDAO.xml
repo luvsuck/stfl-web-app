@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luvsic.stflserverapp.mapper.StockRecordDAO">
+    <select id="stockViewReport" resultType="com.luvsic.stflserverapp.entity.vo.StockView">
+        SELECT
+        p.id AS product_id,
+        p.name AS product_name,
+        p.quantity AS quantity,
+        p.price * p.quantity AS total_amount,
+        COALESCE(SUM(CASE WHEN s.is_stock_in = 1 THEN s.quantity ELSE 0 END), 0) AS stock_in_quantity,
+        COALESCE(SUM(CASE WHEN s.is_stock_in = 0 THEN s.quantity ELSE 0 END), 0) AS stock_out_quantity
+        FROM product p
+        LEFT JOIN stock_record s ON p.id = s.product_id
+        GROUP BY p.id, p.name, p.quantity, p.price;
+    </select>
+</mapper>
