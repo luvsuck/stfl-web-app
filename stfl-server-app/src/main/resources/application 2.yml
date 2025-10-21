@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/stfl_app?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: stfl-server-app
+server:
+  port: 8099
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
